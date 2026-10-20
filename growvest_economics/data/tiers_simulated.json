@@ -1,0 +1,29 @@
+{
+  "_note": "SIMULATED assumptions for the EGN 321 capstone. Prices match GrowVest's published tiers; costs, churn and CAC are illustrative, not real company data.",
+  "tiers": {
+    "free": {
+      "name": "Free",
+      "price_usd": 0,
+      "hosting_cost_usd": 0.60,
+      "support_cost_usd": 0.10,
+      "churn_monthly": 0.15,
+      "cac_usd": 12.00
+    },
+    "pro": {
+      "name": "Pro",
+      "price_usd": 29.00,
+      "hosting_cost_usd": 3.20,
+      "support_cost_usd": 1.50,
+      "churn_monthly": 0.06,
+      "cac_usd": 85.00
+    },
+    "premium": {
+      "name": "Premium",
+      "price_usd": 79.00,
+      "hosting_cost_usd": 6.50,
+      "support_cost_usd": 4.00,
+      "churn_monthly": 0.04,
+      "cac_usd": 160.00
+    }
+  }
+}
