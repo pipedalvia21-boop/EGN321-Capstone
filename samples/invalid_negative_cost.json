@@ -1,0 +1,29 @@
+{
+  "_note": "INVALID on purpose: negative hosting cost.",
+  "tiers": {
+    "free": {
+      "name": "Free",
+      "price_usd": 0,
+      "hosting_cost_usd": 0.6,
+      "support_cost_usd": 0.1,
+      "churn_monthly": 0.15,
+      "cac_usd": 12.0
+    },
+    "pro": {
+      "name": "Pro",
+      "price_usd": 29.0,
+      "hosting_cost_usd": 3.2,
+      "support_cost_usd": 1.5,
+      "churn_monthly": 0.06,
+      "cac_usd": 85.0
+    },
+    "premium": {
+      "name": "Premium",
+      "price_usd": 79.0,
+      "hosting_cost_usd": -6.5,
+      "support_cost_usd": 4.0,
+      "churn_monthly": 0.04,
+      "cac_usd": 160.0
+    }
+  }
+}

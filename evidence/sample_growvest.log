@@ -1,0 +1,12 @@
+{"ts": "2026-10-26T01:22:28Z", "level": "INFO", "event": "report_calculated", "data_file": "/home/claude/egn321-capstone/growvest_economics/data/tiers_simulated.json", "tiers": ["free", "pro", "premium"]}
+{"ts": "2026-10-26T01:22:28Z", "level": "INFO", "event": "history_saved", "run_id": 1, "tiers": ["free", "pro", "premium"]}
+{"ts": "2026-10-26T01:22:29Z", "level": "WARN", "event": "input_refused", "data_file": "samples/invalid_churn_percent.json", "reason": "Pro: churn_monthly must be a fraction in (0, 1], got 6 (write 6% as 0.06)"}
+{"ts": "2026-10-26T01:22:29Z", "level": "WARN", "event": "input_refused", "data_file": "samples/malformed.json", "reason": "malformed JSON: Expecting property name enclosed in double quotes: line 2 column 1 (char 51)"}
+{"ts": "2026-10-26T01:22:30Z", "level": "INFO", "event": "status_checked", "state": "OK"}
+{"ts": "2026-10-26T01:22:30Z", "level": "WARN", "event": "simulated_db_outage_started", "seconds": 6.0}
+{"ts": "2026-10-26T01:22:31Z", "level": "INFO", "event": "report_calculated", "data_file": "/home/claude/egn321-capstone/growvest_economics/data/tiers_simulated.json", "tiers": ["pro"]}
+{"ts": "2026-10-26T01:22:32Z", "level": "ERROR", "event": "history_save_failed", "error": "database is locked", "queued_to": "/home/claude/egn321-capstone/runtime/pending_runs.jsonl"}
+{"ts": "2026-10-26T01:22:33Z", "level": "INFO", "event": "status_checked", "state": "FAILED"}
+{"ts": "2026-10-26T01:22:36Z", "level": "INFO", "event": "simulated_db_outage_ended"}
+{"ts": "2026-10-26T01:22:39Z", "level": "INFO", "event": "recover_succeeded", "recovered": 1, "run_ids": [2]}
+{"ts": "2026-10-26T01:22:39Z", "level": "INFO", "event": "status_checked", "state": "OK"}

@@ -1,0 +1,10 @@
+{
+  "state": "OK",
+  "checks": {
+    "data": "OK",
+    "database": "OK",
+    "last_run": "2026-10-26T01:22:31Z (0.0 h ago)",
+    "pending_runs": 0
+  },
+  "alerts": []
+}

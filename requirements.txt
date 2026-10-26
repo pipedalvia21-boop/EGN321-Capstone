@@ -1,1 +1,2 @@
 pytest>=7
+openpyxl>=3.1   # only for the original-workbook verification tests

@@ -1,0 +1,74 @@
+
+================ DEMO 1 - Normal operation (valid input -> calculation -> result) ================
+Tier         Price     Fee    Margin  Margin %        LTV   Payback  LTV:CAC
+----------------------------------------------------------------------------
+Free         $0.00   $0.00    -$0.70       n/a     -$4.67       n/a    -0.4x
+Pro         $29.00   $1.14    $23.16     79.9%    $385.98    3.7 mo     4.5x
+Premium     $79.00   $2.59    $65.91     83.4%  $1,647.73    2.4 mo    10.3x
+
+Simulated assumptions. Payback n/a = tier never recovers its CAC.
+Saved to history as run #1.
+
+================ DEMO 2 - Original workbook verification ================
+.....                                                                    [100%]
+5 passed in 0.10s
+
+================ DEMO 3 - Invalid input is refused ================
+REFUSED - invalid assumptions: Pro: churn_monthly must be a fraction in (0, 1], got 6 (write 6% as 0.06)
+exit code: 2
+REFUSED - data file is not valid JSON: Expecting property name enclosed in double quotes: line 2 column 1 (char 51)
+exit code: 2
+
+================ DEMO 4 - Evidence: tests, history, status, log ================
+........................................                                 [100%]
+40 passed in 0.59s
+History for pro (newest first)
+ Run  Saved (UTC)          Source       Margin Margin %        LTV  Payback LTV:CAC
+   1  2026-10-26T01:22:28Z live          23.16    79.9%     385.98      3.7    4.5x
+STATE: OK
+  data          OK
+  database      OK
+  last_run      2026-10-26T01:22:28Z (0.0 h ago)
+  pending_runs  0
+ALERTS: none
+{"ts": "2026-10-26T01:22:28Z", "level": "INFO", "event": "report_calculated", "data_file": "/home/claude/egn321-capstone/growvest_economics/data/tiers_simulated.json", "tiers": ["free", "pro", "premium"]}
+{"ts": "2026-10-26T01:22:28Z", "level": "INFO", "event": "history_saved", "run_id": 1, "tiers": ["free", "pro", "premium"]}
+{"ts": "2026-10-26T01:22:29Z", "level": "WARN", "event": "input_refused", "data_file": "samples/invalid_churn_percent.json", "reason": "Pro: churn_monthly must be a fraction in (0, 1], got 6 (write 6% as 0.06)"}
+{"ts": "2026-10-26T01:22:29Z", "level": "WARN", "event": "input_refused", "data_file": "samples/malformed.json", "reason": "malformed JSON: Expecting property name enclosed in double quotes: line 2 column 1 (char 51)"}
+{"ts": "2026-10-26T01:22:30Z", "level": "INFO", "event": "status_checked", "state": "OK"}
+
+================ DEMO 5 - Failure and recovery (database outage) ================
+Database LOCKED for 6 s (/home/claude/egn321-capstone/runtime/history.db)
+--- failure: save while the database is locked
+Tier         Price     Fee    Margin  Margin %        LTV   Payback  LTV:CAC
+----------------------------------------------------------------------------
+Pro         $29.00   $1.14    $23.16     79.9%    $385.98    3.7 mo     4.5x
+
+Simulated assumptions. Payback n/a = tier never recovers its CAC.
+WARNING: history database unavailable (database is locked). Run queued; use `recover` when the database is back.
+--- detection
+STATE: FAILED
+  data          OK
+  database      FAILED: database is locked
+  pending_runs  1
+ALERTS: none
+Database lock released.
+--- recovery
+Recovered 1 run(s) into history: [2]
+--- verification
+STATE: OK
+  data          OK
+  database      OK
+  last_run      2026-10-26T01:22:31Z (0.0 h ago)
+  pending_runs  0
+ALERTS: none
+History for pro (newest first)
+ Run  Saved (UTC)          Source       Margin Margin %        LTV  Payback LTV:CAC
+   2  2026-10-26T01:22:31Z recovered     23.16    79.9%     385.98      3.7    4.5x
+   1  2026-10-26T01:22:28Z live          23.16    79.9%     385.98      3.7    4.5x
+{"ts": "2026-10-26T01:22:31Z", "level": "INFO", "event": "report_calculated", "data_file": "/home/claude/egn321-capstone/growvest_economics/data/tiers_simulated.json", "tiers": ["pro"]}
+{"ts": "2026-10-26T01:22:32Z", "level": "ERROR", "event": "history_save_failed", "error": "database is locked", "queued_to": "/home/claude/egn321-capstone/runtime/pending_runs.jsonl"}
+{"ts": "2026-10-26T01:22:33Z", "level": "INFO", "event": "status_checked", "state": "FAILED"}
+{"ts": "2026-10-26T01:22:36Z", "level": "INFO", "event": "simulated_db_outage_ended"}
+{"ts": "2026-10-26T01:22:39Z", "level": "INFO", "event": "recover_succeeded", "recovered": 1, "run_ids": [2]}
+{"ts": "2026-10-26T01:22:39Z", "level": "INFO", "event": "status_checked", "state": "OK"}
